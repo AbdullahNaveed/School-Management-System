@@ -17,11 +17,11 @@
 
 This project called "Hamaray Bachey" (en: Our Children) is a school management system with following feautures:
  
- *ER Diagram
- *Relational Schemas
- *Student Admission Form
- *Class Assignment Form
- *Student Leave Form
+ * ER Diagram
+ * Relational Schemas
+ * Student Admission Form
+ * Class Assignment Form
+ * Student Leave Form
  
 
 ### Built With
@@ -44,17 +44,17 @@ Following pacakages must be installed to run the software:
 For Code:
 
 * In Database Folder
-      - SQL.pdf contains code for database creation and data insertion.
-      - exampleQueries.pdf contains queries for performing different operations on DB.
-      - 
+      * SQL.pdf contains code for database creation and data insertion.
+      * exampleQueries.pdf contains queries for performing different operations on DB.
+       
 * In HTML Folder
-      - All the html files contain PHP scripts built-in.
-      - Open these files with Notepad
+      * All the html files contain PHP scripts built-in.
+      * Open these files with Notepad
 
 For Testing:
 
 * In HTML Folder
-      - Open these html files on local host using Apache Server
+      * Open these html files on local host using Apache Server
 
 <!-- LICENSE -->
 ## License
