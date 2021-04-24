@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>STUDENT ADMISSION</title>
+		<style> 
+			input[type=string] {
+			  width: 40%;
+			  padding: 12px 20px;
+			  margin: 8px 0;
+			  box-sizing: border-box;
+			}
+			input[type=number] {
+			  width: 40%;
+			  padding: 12px 20px;
+			  margin: 8px 0;
+			  box-sizing: border-box;
+			}
+			input[type=button], input[type=submit], input[type=reset] {
+			  width: 100%;
+			  background-color: #4CAF50;
+			  border: none;
+			  color: white;
+			  padding: 16px 32px;
+			  text-decoration: none;
+			  margin: 4px 2px;
+			  cursor: pointer;
+			}
+			select {
+			  width: 20%;
+			  margin: 8px 0;
+			  border-radius: 4px;
+			}
+			div {
+			  border-radius: 5px;
+			  background-color: #f2f2f2;
+			  padding: 20px;
+			}
+			h3 {
+				color: blue;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<hr>
+			<div>
+					<h3 align="center" >HAMAREY BACHCHEY</h3>
+					<h3 align="center" >STUDENT ADMISSION FORM</h3>
+			</div>
+		<hr>
+
+		<form action="" method="post">
+			<hr>
+				<div>
+					<h3 align="center">Student Information:</h3>
+
+					<p>Student Name: <br><input type = "string" placeholder = "Type Full Name" name = "studentName">
+					 <br>Date of Birth: <br><input type = "string" placeholder = "DD/MM/YYYY" name = "studentDOB"></p>
+					 
+					 <p>Gender: <select name="studentGender">  
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>  
+										<option value="Other">Other</option>  
+										</select></p>
+				</div>
+			<hr>
+
+			<hr>
+				<div>
+					<h3 align="center">Parents Information:</h3>
+
+					<p>Father Name:<input type = "string" placeholder = "Type Full Name" name = "fatherName">
+				    Mother Name: <input type = "string" placeholder = "Type Full Name" name = "motherName"></p>
+
+				    <p>Father Contact:<input type = "string" placeholder = "" name = "fatherContact">
+				    Mother Contact: <input type = "string" placeholder = "" name = "motherContact"></p>
+
+				    <p>Father CNIC:<input type = "string" placeholder = "No Dashes" name = "fatherCNIC">
+				    Mother CNIC: <input type = "string" placeholder = "No Dashes" name = "motherCNIC"></p>
+
+				    <p>Father Email:<input type = "string" placeholder = "" name = "fatherEmail">
+				    Mother Email: <input type = "string" placeholder = "" name = "motherEmail"></p>
+
+				    <p>Father Address:<input type = "string" placeholder = "" name = "fatherAddress">
+				    Mother Address: <input type = "string" placeholder = "" name = "motherAddress"></p>
+
+				</div>
+			<hr>
+
+			<hr>
+				<div>
+					<h3 align="center">Guardian Information:</h3>
+
+					<p>Guardian Name:<input type = "string" placeholder = "Type Full Name" name = "GuardianName"></p>
+
+				    <p>Guardian Contact:<input type = "string" placeholder = "" name = "GuardianContact"></p>
+
+				    <p>Guardian CNIC:<input type = "string" placeholder = "No Dashes" name = "GuardianCNIC"></p>
+
+				    <p>Gender: <select name="guardianGender">  
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>  
+										<option value="Other">Other</option>  
+										</select></p>
+
+				    <p>Guardian Relation:<input type = "string" placeholder = "" name = "GuardianRelation"></p>
+
+				</div>
+			<hr>
+
+			<hr>
+				<div>
+					<h3 align="center">For Staff Only:</h3>
+
+					<p>Fee Amount:<input type = "number" placeholder = "" name = "feeAmount"></p>
+
+				    <p>Discount:<input type = "number" placeholder = "" name = "discount"></p>
+
+				    <p>Final Amount:<input type = "number" placeholder = "" name = "finalAmount"></p>
+
+				    <p>Fee Fully Paid: <select name="feePaid">  
+										<option value="YES">YES</option>
+										<option value="NO">NO</option>  
+										</select></p>
+					<p>Challan Number:<input type = "number" placeholder = "" name = "challanNumber"></p>
+				</div>
+			<hr>
+			<input type="submit" value="Submit">
+
+		</form>
+
+<?php  // creating a database connection 
+
+   $db_sid = 
+  "(DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = DESKTOP-JHPIJ5M)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = orcl.168.10.10)
+    )
+  )";
+  
+   $db_user = "scott";   // Oracle username e.g "scott"
+   $db_pass = "1234";    // Password for user e.g "1234"
+   $con = oci_connect($db_user,$db_pass,$db_sid); 
+   if($con) 
+      { echo "Oracle Connection Successful."; } 
+   else 
+      { die('Could not connect to Oracle: '); } 
+  
+     // Insertion  in the emp Table
+	 
+				$studentName = $_POST['studentName'];
+				$studentDOB = $_POST['studentDOB'];
+				$studentGender = $_POST['studentGender'];
+				$fatherName = $_POST['fatherName'];
+				$motherName = $_POST['motherName'];
+				$fatherContact = $_POST['fatherContact'];
+				$motherContact = $_POST['motherContact'];
+				$fatherCNIC = $_POST['fatherCNIC'];
+				$motherCNIC = $_POST['motherCNIC'];
+				$fatherEmail = $_POST['fatherEmail'];
+				$motherEmail = $_POST['motherEmail'];
+				$fatherAddress = $_POST['fatherAddress'];
+				$motherAddress = $_POST['motherAddress'];
+				$GuardianName = $_POST['GuardianName'];
+				$GuardianContact = $_POST['GuardianContact'];
+				$GuardianCNIC = $_POST['GuardianCNIC'];
+				$GuardianRelation = $_POST['GuardianRelation'];
+
+				$feeAmount = $_POST['feeAmount'];
+				$discount = $_POST['discount'];
+				$finalAmount = $_POST['finalAmount'];
+				$challanNumber = $_POST['challanNumber'];
+	 
+	
+	//Write Queries here!
+	 $q="insert into emp";
+	 $query_id = oci_parse($con, $q); 		
+	 $r = oci_execute($query_id); 
+
+	 // Selected the Inserted Record and shows on the webpage 
+	 if($r)
+	 {
+	 	 echo "Record Inserted!<br>";
+	 }
+	 else
+	 {
+		 echo "Record not inserted!<br>";
+		 $e = oci_error($query_id);  
+		 echo $e['message'];
+	 }
+?>
+
+</body>
+</html>

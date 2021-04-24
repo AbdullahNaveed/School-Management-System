@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+
+	<head>
+		<title>STUDENT ACCOMPANYING</title>
+		<style> 
+			input[type=string] {
+			  width: 40%;
+			  padding: 12px 20px;
+			  margin: 8px 0;
+			  box-sizing: border-box;
+			}
+			input[type=number] {
+			  width: 40%;
+			  padding: 12px 20px;
+			  margin: 8px 0;
+			  box-sizing: border-box;
+			}
+			input[type=button], input[type=submit], input[type=reset] {
+			  width: 100%;
+			  background-color: #4CAF50;
+			  border: none;
+			  color: white;
+			  padding: 16px 32px;
+			  text-decoration: none;
+			  margin: 4px 2px;
+			  cursor: pointer;
+			}
+			textarea {
+			  width: 100%;
+			  height: 150px;
+			  padding: 12px 20px;
+			  box-sizing: border-box;
+			  border: 2px solid #ccc;
+			  border-radius: 4px;
+			  background-color: #f8f8f8;
+			  font-size: 16px;
+			  resize: none;
+			}
+			select {
+			  width: 20%;
+			  margin: 8px 0;
+			  border-radius: 4px;
+			}
+			div {
+			  border-radius: 5px;
+			  background-color: #f2f2f2;
+			  padding: 20px;
+			}
+			h3 {
+				color: blue;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<hr>
+			<div>
+					<h3 align="center" >HAMAREY BACHCHEY</h3>
+					<h3 align="center" >STUDENT ACCOMPANYING FORM</h3>
+			</div>
+		<hr>
+
+		<form action="" method="post">
+			<hr>
+				<div>
+					<h3 align="center">Student Information:</h3>
+
+					 <p>Student ID: <br><input type = "string" placeholder = "" name = "studentId">
+					 <br>Name: <br><input type = "string" placeholder = "" name = "studentName"></p>
+					 <p>Class: <br><input type = "string" placeholder = "" name = "studentClass"></p>
+				</div>
+			<hr>
+
+			<hr>
+				<div>
+					<h3 align="center">Accompanying Guardian Information:</h3>
+
+					<p>Guardian ID:<input type = "string" placeholder = "" name = "GuardianId"></p>
+
+				    <p>Guardian Name:<input type = "string" placeholder = "" name = "GuardianName"></p>
+
+				    <p>Pregnant: <select name="PregnantInfo">  
+										<option value="YES">YES</option>
+										<option value="NO">NO</option>   
+										</select></p>
+
+				    <p>Reason for Parents Absence:<textarea name="reasonForParentAbsence"></textarea>
+
+				</div>
+			<hr>
+			<input type="submit" value="Submit">
+
+		</form>
+
+<?php  // creating a database connection 
+
+   $db_sid = 
+  "(DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = DESKTOP-JHPIJ5M)(PORT = 1521))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = orcl.168.10.10)
+    )
+  )";
+  
+   $db_user = "scott";   // Oracle username e.g "scott"
+   $db_pass = "1234";    // Password for user e.g "1234"
+   $con = oci_connect($db_user,$db_pass,$db_sid); 
+   if($con) 
+      { echo "Oracle Connection Successful."; } 
+   else 
+      { die('Could not connect to Oracle: '); } 
+  
+     // Insertion  in the emp Table
+	 
+				$studentName = $_POST['studentName'];
+				$studentId = $_POST['studentId'];
+				$studentClass = $_POST['studentClass'];
+				$GuardianId = $_POST['GuardianId'];
+				$GuardianName = $_POST['GuardianName'];
+				$PregnantInfo = $_POST['PregnantInfo'];
+				$reasonForParentAbsence = $_POST['reasonForParentAbsence'];
+	 
+	
+	//Write Queries here!
+	 $q="insert into emp";
+	 $query_id = oci_parse($con, $q); 		
+	 $r = oci_execute($query_id); 
+
+	 // Selected the Inserted Record and shows on the webpage 
+	 if($r)
+	 {
+	 	 echo "Record Inserted!<br>";
+	 }
+	 else
+	 {
+		 echo "Record not inserted!<br>";
+		 $e = oci_error($query_id);  
+		 echo $e['message'];
+	 }
+?>
+
+</body>
+</html>
